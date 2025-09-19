@@ -24,7 +24,7 @@ def require_payment(
     price: Union[str, int, TokenAmount],
     pay_to_address: str,
     resource: Optional[str] = None,
-    network: str = "base",
+    network: str = "eip155:8453",
     description: str = "Payment required for this service",
     message: Optional[str] = None,
 ) -> x402PaymentRequiredException:
@@ -98,7 +98,7 @@ def paid_service(
     price: Union[str, int, TokenAmount],
     pay_to_address: str,
     resource: Optional[str] = None,
-    network: str = "base",
+    network: str = "eip155:8453",
     description: str = "Payment required for this service",
 ):
     """Decorator to automatically require payment for a function or method.
@@ -149,7 +149,7 @@ def create_tiered_payment_options(
     pay_to_address: str,
     resource: str,
     tiers: Optional[List[dict]] = None,
-    network: str = "base",
+    network: str = "eip155:8453",
 ) -> List[PaymentRequirements]:
     """Create multiple payment options with different tiers/features.
 
@@ -246,7 +246,7 @@ def smart_paid_service(
     price: Union[str, int, TokenAmount],
     pay_to_address: str,
     resource: Optional[str] = None,
-    network: str = "base",
+    network: str = "eip155:8453",
     description: str = "Payment required for this service",
 ):
     """Smart decorator that only requires payment if not already paid.
