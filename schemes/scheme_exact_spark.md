@@ -12,12 +12,12 @@ This scheme facilitates payments of a specific amount over Bitcoin using Lightni
 
 The protocol flow for `exact` on Spark is client-driven.
 
-1. **Client** makes an HTTP request to a **Resource Server**.
-2. **Resource Server** responds with a `402 Payment Required` status. The response body contains the `paymentRequirements` for the `exact` scheme
-   - In addition, the `extra` field in the requirements may contain a **lightningInvoice** or a **depositAddress** which both resolve to the Spark address specified in `payTo`.
-3. **Client** proceeds with one of: (1) directly sending Bitcoin to the **sparkAddress** in the payTo field, (2) paying the **lightningInvoice**, or (3) transferring Bitcoin over L1 to the **depositAddress**.
-4. **Client** sends a new HTTP request to the resource server with the `X-PAYMENT` header containing the details of the payment made.
-5. **Resource Server** receives the request and verifies the payment.
+1. **Client** makes an HTTP request to a **Resource Server**.  
+2. **Resource Server** responds with a `402 Payment Required` status. The response body contains the `paymentRequirements` for the `exact` scheme  
+   - In addition, the `extra` field in the requirements may contain a **lightningInvoice** or a **depositAddress** which both resolve to the Spark address specified in `payTo`.  
+3. **Client** proceeds with one of: (1) directly sending Bitcoin to the **sparkAddress** in the payTo field, (2) paying the **lightningInvoice**, or (3) transferring Bitcoin over L1 to the **depositAddress**.  
+4. **Client** sends a new HTTP request to the resource server with the `X-PAYMENT` header containing the details of the payment made.  
+5. **Resource Server** receives the request and verifies the payment.  
 6. **Resource Server** grants the **Client** access to the resource in its response.
 
 ## `PaymentRequirements` for `exact`
@@ -43,10 +43,10 @@ In addition to the standard x402 `PaymentRequirements` fields, the `exact` schem
 }
 ```
 
-- `asset`: The currency to be paid (e.g., "BTC").
-- `maxAmountRequired`: The amount to be paid in satoshis.
-- `extra.lightningInvoice`: An optional Bitcoin Lightning invoice which resolves to the specified Spark address.
-- `extra.depositAddress`: An optional Bitcoin L1 address which resolves to the specified Spark address.
+* `asset`: The currency to be paid (e.g., "BTC").  
+* `maxAmountRequired`: The amount to be paid in satoshis.  
+* `extra.lightningInvoice`: An optional Bitcoin Lightning invoice which resolves to the specified Spark address.  
+* `extra.depositAddress`: An optional Bitcoin L1 address which resolves to the specified Spark address.
 
 ## `X-PAYMENT` Header Payload
 
