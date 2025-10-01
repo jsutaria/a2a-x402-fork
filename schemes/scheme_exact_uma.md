@@ -10,13 +10,13 @@ This scheme facilitates payments of a specific amount over Bitcoin using UMA, ei
 
 ## Protocol Flow
 
-1. **Client** makes an HTTP request to a **Resource Server**.  
-2. **Resource Server** responds with a `402 Payment Required` status. The response body contains the `paymentRequirements` for the `exact` scheme  
-   - In addition, the `extra` field in the requirements may contain an UMA invoice which resolves to the UMA specified in `payTo`.  
-3. **Client** proceeds with one of: (1) directly sending an LNURLp request to the **UMA address** in the payTo field, or (2) decoding the **UMA invoice** and sending a pay request to the url specified.   
-4. **Client** completes UMA handshake, and makes payment.  
-5. **Client** sends a new HTTP request to the resource server with the `X-PAYMENT` header containing the details of the payment made.  
-6. **Resource Server** receives the request and verifies the payment.  
+1. **Client** makes an HTTP request to a **Resource Server**.
+2. **Resource Server** responds with a `402 Payment Required` status. The response body contains the `paymentRequirements` for the `exact` scheme
+   - In addition, the `extra` field in the requirements may contain an UMA invoice which resolves to the UMA specified in `payTo`.
+3. **Client** proceeds with one of: (1) directly sending an LNURLp request to the **UMA address** in the payTo field, or (2) decoding the **UMA invoice** and sending a pay request to the url specified.
+4. **Client** completes UMA handshake, and makes payment.
+5. **Client** sends a new HTTP request to the resource server with the `X-PAYMENT` header containing the details of the payment made.
+6. **Resource Server** receives the request and verifies the payment.
 7. **Resource Server** grants the **Client** access to the resource in its response.
 
 ## `PaymentRequirements` for `exact`
@@ -26,13 +26,13 @@ In addition to the standard x402 `PaymentRequirements` fields, the `exact` schem
 ```json
 {
   "scheme": "exact",
-  "network": "lightning:mainnet",
+  "network": "uma",
   "maxAmountRequired": "1000", // in lowest denomination of asset
   "asset": "USD",
   "payTo": "$receiver@vasp.com",
   "resource": "https://example.com/weather",
   "description": "Access to protected content",
-  "mimeType": "application/json",  
+  "mimeType": "application/json",
   "maxTimeoutSeconds": 300,
   "extra": {
     "umaInvoice": "uma.." // optional, encoded bech-32 format
@@ -48,12 +48,12 @@ Once decoded, the `X-PAYMENT` header is a JSON string with the following propert
 
 ```json
 {
- "x402Version": 1,
- "scheme": "exact",
- "network": "lightning:mainnet",
- "payload": {
-   "preimage": "..."
- }
+  "x402Version": 1,
+  "scheme": "exact",
+  "network": "uma",
+  "payload": {
+    "preimage": "..."
+  }
 }
 ```
 
@@ -68,13 +68,13 @@ Once decoded, the `X-PAYMENT-RESPONSE` is a JSON string with the following prope
 ```json
 {
  "success": true | false,
- "network": "lightning:mainnet"
+ "network": "uma"
 }
 ```
 
 ## Sequence Diagram
 
-```mermaid  
+```mermaid
 sequenceDiagram
    participant Client
    participant ResourceServer
