@@ -34,9 +34,10 @@ def require_payment(
 
     Args:
         price: Payment amount (e.g., "$1.00", 1.00, TokenAmount)
-        pay_to_address: Ethereum address to receive payment
+        pay_to_address: Address to receive payment (format depends on network)
         resource: Resource identifier (auto-generated if None)
-        network: Blockchain network (default: "base")
+        network: Blockchain network in CAIP-2 format (default: "eip155:8453" for Base).
+            Examples: "eip155:1" (Ethereum), "bip122:000000000019d6689c085ae165831e93" (Bitcoin)
         description: Human-readable description
         message: Exception message (default: uses description)
 
@@ -105,9 +106,9 @@ def paid_service(
 
     Args:
         price: Payment amount (e.g., "$1.00", 1.00, TokenAmount)
-        pay_to_address: Ethereum address to receive payment
+        pay_to_address: Address to receive payment (format depends on network)
         resource: Resource identifier (auto-generated from function name if None)
-        network: Blockchain network (default: "base")
+        network: Blockchain network in CAIP-2 format (default: "eip155:8453" for Base)
         description: Human-readable description
 
     Example:
@@ -155,10 +156,10 @@ def create_tiered_payment_options(
 
     Args:
         base_price: Base payment amount
-        pay_to_address: Ethereum address to receive payment
+        pay_to_address: Address to receive payment (format depends on network)
         resource: Base resource identifier
         tiers: List of tier definitions with 'multiplier', 'suffix', 'description'
-        network: Blockchain network (default: "base")
+        network: Blockchain network in CAIP-2 format (default: "eip155:8453" for Base)
 
     Returns:
         List of PaymentRequirements for different service tiers
@@ -256,9 +257,9 @@ def smart_paid_service(
 
     Args:
         price: Payment amount (e.g., "$1.00", 1.00, TokenAmount)
-        pay_to_address: Ethereum address to receive payment
+        pay_to_address: Address to receive payment (format depends on network)
         resource: Resource identifier (auto-generated from function name if None)
-        network: Blockchain network (default: "base")
+        network: Blockchain network in CAIP-2 format (default: "eip155:8453" for Base)
         description: Human-readable description
 
     Example:

@@ -122,9 +122,9 @@ class x402PaymentRequiredException(x402Error):
 
         Args:
             price: Payment amount (e.g., "$1.00", 1.00, TokenAmount)
-            pay_to_address: Ethereum address to receive payment
+            pay_to_address: Address to receive payment (format depends on network)
             resource: Resource identifier (e.g., "/api/generate")
-            network: Blockchain network (default: "base")
+            network: Blockchain network in CAIP-2 format (default: "eip155:8453" for Base)
             description: Human-readable description
             message: Exception message (default: uses description)
 
